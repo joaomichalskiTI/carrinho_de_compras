@@ -1,0 +1,89 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+img::selection {
+  background: none;
+}
+
+label::selection {
+  background: none;
+}
+
+a,
+img,
+data,
+span,
+input,
+button,
+select,
+textarea {
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button,
+select,
+textarea {
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  line-height: normal;
+  font-style: normal;
+  background-color: #fffff0;
+}
+
+::-webkit-scrollbar {
+  width: 8px !important;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(63, 67, 80, 0.24);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(63, 67, 80, 0.32);
+}

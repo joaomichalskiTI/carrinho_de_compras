@@ -1,0 +1,9 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  img {
+    max-width: 42px;
+  }
+}
