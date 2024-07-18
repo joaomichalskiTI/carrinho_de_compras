@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+
 *,
 *::before,
 *::after {
@@ -68,7 +70,7 @@ a {
 }
 
 body {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: normal;
   font-style: normal;
   background-color: #fffff0;

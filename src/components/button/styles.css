@@ -1,15 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
-
-
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+  width: 100%;
   border-radius: 5px;
   cursor: pointer;
   border: solid 0.5px #5a5959;
-
 
   img {
     max-width: 42px;
