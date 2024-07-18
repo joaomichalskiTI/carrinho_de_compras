@@ -11,26 +11,32 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  gap: 141px;
+  gap: 60px;
+  padding: 44px 0 38px;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 93px;
+  gap: 40px;
 }
 
 .form .form_values {
   display: flex;
   flex-direction: column;
-  gap: 87px;
+  gap: 25px;
   width: 100%;
+}
+
+.form .form_values h1 {
+font-size: 24px;
+  font-weight: 600;
 }
 
 .inputs {
   display: flex;
   flex-direction: column;
-  gap: 38px;
+  gap: 20px;
 }
 
 .actions {

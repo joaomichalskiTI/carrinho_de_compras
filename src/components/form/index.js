@@ -26,32 +26,27 @@ function Form() {
                             src={cart}
                             background="#DCB800"
                             fontSize="25px"
-                            color="white"
                         />
                         <Button
                             label={"Cadastre esse produto"}
                             src={plus}
                             background="#4B4B4B"
                             fontSize="25px"
-                            color="white"
                         />
                         <Button
                             label={"Seus produtos"}
                             src={menu}
                             background="#4535FE"
                             fontSize="25px"
-                            color="white"
                         />
                     </div>
                 </div>
-
                 <div class="shop">
                     <Button
                         label={"Suas compras"}
                         src={bag}
                         background="#BABB99"
                         fontSize="25px"
-                        color="white"
                     />
                 </div>
             </div>
