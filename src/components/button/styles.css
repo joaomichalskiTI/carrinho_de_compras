@@ -2,18 +2,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 8px;
   width: 100%;
+  padding: 4px 0;
   border-radius: 5px;
   cursor: pointer;
   border: solid 0.5px #5a5959;
 
   img {
     max-width: 42px;
-    height: auto;
   }
 
   p {
     color: #fff;
+    font-size: 16px;
   }
 }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import "./styles.css";
 
 import cart from "../../assets/cart.png";
@@ -8,45 +10,38 @@ import bag from "../../assets/bag.png";
 import Button from "../button";
 import Input from "../input";
 
-function Form() {
+function Form({ isOpenModalCarts }) {
     return (
-        <div class="form_container">
-            <div class="form">
+        <div className="form_container">
+            <div className="form">
                 <div className="wrapper">
-                    <div class="form_values">
+                    <div className="form_values">
                         <h1>CADASTRO DE PRODUTOS</h1>
-                        <div class="inputs">
+                        <div className="inputs">
                             <Input label={"Nome do produto"} />
                             <Input label={"Valor do produto"} type={"currence"} />
                         </div>
                     </div>
-                    <div class="actions">
+                    <div className="actions">
                         <Button
                             label={"Adicionar ao carrinho"}
                             src={cart}
                             background="#DCB800"
-                            fontSize="25px"
                         />
                         <Button
                             label={"Cadastre esse produto"}
                             src={plus}
                             background="#4B4B4B"
-                            fontSize="25px"
                         />
-                        <Button
-                            label={"Seus produtos"}
-                            src={menu}
-                            background="#4535FE"
-                            fontSize="25px"
-                        />
+                        <Button label={"Seus produtos"} src={menu} background="#4535FE" />
                     </div>
                 </div>
-                <div class="shop">
+                <div className="shop">
                     <Button
                         label={"Suas compras"}
                         src={bag}
                         background="#BABB99"
-                        fontSize="25px"
+                        onClick={isOpenModalCarts}
                     />
                 </div>
             </div>
