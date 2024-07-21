@@ -76,10 +76,6 @@ tbody tr:first-child {
   border-top: 1px solid #e9ebf1;
 }
 
-tbody tr:hover {
-  background: #f0f0f5;
-}
-
 .actions_table {
   display: flex;
   gap: 6px;
@@ -93,6 +89,8 @@ tbody tr td p {
 .edit_delete {
   display: flex;
   gap: 9px;
+  width: 30px;
+  height: 30px;
 }
 
 .value {

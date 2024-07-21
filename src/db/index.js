@@ -25,4 +25,10 @@ let carts = [
 
 ];
 
-export { cart, columns, carts };
+const itemsModalShop = [
+
+    { title: "Produto", dataIndex: "produto", key: "produto" },
+    { title: "Valor ", dataIndex: "Valor", key: "Valor" },
+]
+
+export { cart, columns, carts, itemsModalShop };
