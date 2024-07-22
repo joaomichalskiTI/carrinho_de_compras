@@ -4,6 +4,8 @@ import "./styles.css"
 import check from "../../assets/check.png";
 import trash from "../../assets/trash.png";
 import cart from "../../assets/cart.png";
+import menu2 from "../../assets/menu2.png"
+import close from "../../assets/close.png"
 
 import Button from "../button";
 
@@ -11,8 +13,20 @@ import { itemsModalShop } from "../../db"
 
 function ModalItems({ onClose }) {
     return (
-        <div className="modal_items_content">
-            <div className="content_itemns">
+        <div className="modal_itens_content">
+            <div className="content_itens">
+                <div className="header_content">
+                    <div className="title_content">
+                        <img src={menu2} alt="Menu" />
+                        <h1>Produtos Cadastrados</h1>
+                    </div>
+                    <div className="btn_close">
+                        <Button
+                            onClick={onClose}
+                            src={close}
+                        />
+                    </div>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -31,32 +45,23 @@ function ModalItems({ onClose }) {
                             <td>
                                 <p>R$5,00</p>
                             </td>
-                            <td className="btn_actions">
+                            <td className="btns_actions">
                                 <div className="edit_delete">
                                     <Button
                                         src={trash}
-                                        background="#E52626"
                                     />
                                 </div>
                                 <div className="inner_cart_item">
                                     <Button
-                                        label={"Por no carrinho"}
+                                        label={"Adicionar ao carrinho"}
                                         src={cart}
-                                        background="#DCB800"
+                                        background="#549BFF"
                                     />
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div className="btn_finish">
-                    <Button
-                        onClick={onClose}
-                        src={check}
-                        label="Concluído"
-                        background="#05A73C"
-                    />
-                </div>
             </div>
         </div>
     );

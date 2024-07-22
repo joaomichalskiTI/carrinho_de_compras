@@ -4,6 +4,7 @@
   justify-content: space-between;
   gap: 8px;
   width: 100%;
+  min-height: 44px;
   padding: 6px 16px;
   border-radius: 50px;
   cursor: pointer;

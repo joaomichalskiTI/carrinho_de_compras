@@ -9,7 +9,7 @@
   border-radius: 8px;
   overflow: hidden;
   z-index: 999;
-  background-color: #1f1f1fbd;
+  background-color: #112d5592;
 }
 
 .content_carts {
@@ -23,7 +23,7 @@
   max-width: 856px;
   max-height: 735px;
   border-radius: 8px;
-  background-color: #e0e0cf;
+  background-color: #fff;
 }
 
 .inner_carts {
@@ -43,8 +43,8 @@
   height: 180px;
 
   div {
-    background-color: #c0c0a9;
     border-radius: 5px;
+    background-color: aliceblue;
   }
 
   img {
