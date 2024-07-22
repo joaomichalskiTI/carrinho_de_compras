@@ -11,31 +11,31 @@ import book from "../../assets/book.png";
 import Button from "../button";
 import Input from "../input";
 
-import { cart, addToCart } from "../../db";
-
-function Form({ isOpenModalCarts, isOpenModalItens }) {
+function Form({ isOpenModalCarts, isOpenModalItens, handleAddToCart }) {
     const [name, setName] = useState("");
     const [value, setValue] = useState("");
-    const [cartState, setCartState] = useState(cart);
+    const [disabled, setDisabled] = useState(false);
 
-    useEffect(() => {
-        // Atualiza o estado local sempre que o array `cart` é modificado
-        setCartState([...cart]);
-    }, [cart]);
-
-    const handleAddToCart = () => {
+    const addToCart = () => {
         const newItem = {
-            id: Date.now().toString(), // Gerar um ID único
+            id: Date.now(),
             name: name,
             value: value,
-            quantity: 1, // Ajustar conforme necessário
+            quantity: 1,
         };
-        addToCart(newItem);
-        setCartState([...cart]); // Atualiza o estado local
-        console.log(cart); // Para verificar se o item foi adicionado corretamente
-        setName(""); // Limpar o campo após adicionar
-        setValue(""); // Limpar o campo após adicionar
+
+        handleAddToCart(newItem);
+        setName("");
+        setValue("");
     };
+
+    useEffect(() => {
+        if (!name | !value) {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
+    }, [name, value]);
 
     return (
         <div className="form_container">
@@ -68,7 +68,7 @@ function Form({ isOpenModalCarts, isOpenModalItens }) {
                             src={carts}
                             color="#fff"
                             background="#549BFF"
-                            onClick={handleAddToCart}
+                            onClick={addToCart}
                         />
                         <Button
                             label={"Cadastre esse produto"}

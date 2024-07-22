@@ -76,6 +76,20 @@ body {
   overflow: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 8px !important;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(63, 67, 80, 0.24);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(63, 67, 80, 0.32);
+}
+
 @media (max-width: 901px) {
   body {
     overflow: auto;

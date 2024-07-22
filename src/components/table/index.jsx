@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./styles.css";
 
@@ -9,14 +9,10 @@ import cart_without from "../../assets/cart_without.png";
 
 import Button from "../button";
 
-import { cart, columns } from "../../db";
+import { columns } from "../../db";
 
-function Table() {
+function Table({ cart, handleDeleteFromCart }) {
     const [quantity, setQuantity] = useState(0);
-
-    const [item, setItem] = useState(cart);
-
-    console.log("ietem", cart);
 
     const handleLessQuantity = () => {
         setQuantity(quantity - 1);
@@ -24,6 +20,10 @@ function Table() {
 
     const handleMoreQuantity = () => {
         setQuantity(quantity + 1);
+    };
+
+    const deleteToItem = (itemId) => {
+        handleDeleteFromCart(itemId);
     };
 
     return (
@@ -35,7 +35,7 @@ function Table() {
                             <img src={cartBlack} alt="Seu carrinho" />
                             <h2>Carrinho</h2>
                         </div>
-                        {!item ? (
+                        {!cart.length ? (
                             <div className="without_date">
                                 <div className="without_content">
                                     <img src={cart_without} alt="Seu carrinho" />
@@ -57,7 +57,7 @@ function Table() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {item.map((item) => (
+                                    {cart.map((item) => (
                                         <tr key={item.id}>
                                             <td>
                                                 <p>{item.name}</p>
@@ -90,7 +90,10 @@ function Table() {
                                             </td>
                                             <td>
                                                 <div className="actions_table">
-                                                    <button background="#E52626">
+                                                    <button
+                                                        background="#E52626"
+                                                        onClick={() => deleteToItem(item.id)}
+                                                    >
                                                         <img src={trash} alt="delete" />
                                                     </button>
                                                 </div>

@@ -1,7 +1,6 @@
 
 import "./styles.css"
 
-import check from "../../assets/check.png";
 import trash from "../../assets/trash.png";
 import cart from "../../assets/cart.png";
 import menu2 from "../../assets/menu2.png"
