@@ -4,8 +4,8 @@ import "./styles.css";
 
 import check from "../../assets/check.png";
 import cartBlack from "../../assets/cartBlack.png";
-// import edit from "../../assets/edit.png";
-import dell from "../../assets/delete.png";
+
+import trash from "../../assets/trash.png";
 
 import Button from "../button";
 
@@ -33,7 +33,7 @@ function Table() {
                     <div className="inner">
                         <div className="table_hero">
                             <img src={cartBlack} alt="Seu carrinho" />
-                            <h2>Seu carrinho</h2>
+                            <h2>Carrinho</h2>
                         </div>
                         <table>
                             <thead>
@@ -75,10 +75,9 @@ function Table() {
                                         </td>
                                         <td>
                                             <div className="actions_table">
-                                                <div className="edit_delete">
-                                                    {/* <Button src={edit} background="#4535FE" /> */}
-                                                    <Button src={dell} background="#E52626" />
-                                                </div>
+                                                <button background="#E52626">
+                                                    <img src={trash} alt="delete" />
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -95,10 +94,8 @@ function Table() {
                     <Button
                         label={"Finalizar compra"}
                         src={check}
+                        color={"#fff"}
                         background="#05A73C"
-                        height="50px"
-                        fontSize="30px"
-                        fontWeight="bold"
                     />
                 </div>
             </div>

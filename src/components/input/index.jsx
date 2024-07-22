@@ -7,13 +7,22 @@ function Input(props) {
             <div className="content">
                 {props.type === "currence" ? (
                     <div className="currence">
-                        <input type="text" style={{ textAlign: props.textAlign }} />
+                        <input
+                            type="text"
+                            style={{ textAlign: props.textAlign }}
+                            value={props.value}
+                            onChange={props.onChange}
+                            placeholder={props.placeholder}
+                        />
                     </div>
                 ) : (
                     <input
                         type={props.type}
                         style={{ textAlign: props.textAlign }}
-                        maxLength={50}
+                        maxLength={30}
+                        value={props.value}
+                        onChange={props.onChange}
+                        placeholder={props.placeholder}
                     />
                 )}
             </div>

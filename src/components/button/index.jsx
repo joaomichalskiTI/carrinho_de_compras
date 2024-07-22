@@ -2,16 +2,18 @@ import "./styles.css";
 
 function Button(props) {
     return (
-        <div
+        <button
             className="button"
             style={{
+                color: props.color,
                 background: props.background,
             }}
             onClick={props.onClick}
         >
             <img src={props.src} style={{ width: props.width }} alt="icon" />
             {props.label && <p>{props.label}</p>}
-        </div>
+            <span />
+        </button>
     );
 }
 

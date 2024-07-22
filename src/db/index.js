@@ -16,6 +16,10 @@ let cart = [
     },
 ];
 
+export const addToCart = (item) => {
+    cart.push(item);
+};
+
 let carts = [
     {
         id: "1",

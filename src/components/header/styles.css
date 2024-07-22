@@ -1,12 +1,12 @@
-.header {
+header {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   border-bottom: 2px solid #000;
-  height: 8vh;
+  padding: 12px 0 14px;
 
   img {
-    max-width: 320px;
+    width: 222px;
   }
 }

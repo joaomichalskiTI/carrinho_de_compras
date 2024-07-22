@@ -14,3 +14,10 @@ main {
   padding: 0 22px;
   position: relative;
 }
+
+@media (max-width: 901px) {
+  main {
+    flex-direction: column-reverse;
+    margin-bottom: 100px;
+  }
+}

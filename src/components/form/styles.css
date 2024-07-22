@@ -21,16 +21,28 @@
   gap: 40px;
 }
 
+.form .form_title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form .form_title h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #112d55;
+  white-space: nowrap;
+}
+
+.form .form_title img {
+  width: 32px;
+}
+
 .form .form_values {
   display: flex;
   flex-direction: column;
   gap: 25px;
   width: 100%;
-}
-
-.form .form_values h1 {
-font-size: 24px;
-  font-weight: 600;
 }
 
 .inputs {

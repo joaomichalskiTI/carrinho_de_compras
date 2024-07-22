@@ -1,20 +1,18 @@
 .button {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 8px;
   width: 100%;
-  padding: 4px 0;
-  border-radius: 5px;
+  padding: 6px 16px;
+  border-radius: 50px;
   cursor: pointer;
-  border: solid 0.5px #5a5959;
+}
 
-  img {
-    max-width: 42px;
-  }
+button img {
+  max-width: 32px;
+}
 
-  p {
-    color: #fff;
-    font-size: 16px;
-  }
+button p {
+  font-size: 16px;
 }

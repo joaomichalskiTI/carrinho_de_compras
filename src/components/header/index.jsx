@@ -4,9 +4,9 @@ import logo from "../../assets/logo.png";
 
 function Header() {
     return (
-        <div className="header">
-            <img src={logo} alt="logo" />
-        </div>
+        <header>
+            <img src={logo} alt="logo" draggable={false} />
+        </header>
     );
 }
 

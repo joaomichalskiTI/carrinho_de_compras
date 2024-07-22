@@ -5,26 +5,28 @@ import "./styles.css";
 import Header from "../header";
 import Table from "../table";
 import Form from "../form";
-//import ModalCarts from "../modalCarts";
-import ModalItems from "../modalItems"
+
+import ModalCarts from "../modalCarts";
+import ModalItems from "../modalItems";
 
 function Layout() {
     const [open, setOpen] = useState(false);
+    const [openItems, setOpenItems] = useState(false);
 
     return (
         <div className="layout">
             <Header />
             <main>
                 <Table />
-                <Form isOpenModalCarts={() => setOpen(true)} />
+                <Form
+                    isOpenModalCarts={() => setOpen(true)}
+                    isOpenModalItens={() => setOpenItems(true)}
+                />
             </main>
-
-            {open && <ModalItems onClose={() => setOpen(false)} />}
-
+            {open && <ModalCarts onClose={() => setOpen(false)} />}
+            {openItems && <ModalItems onClose={() => setOpenItems(false)} />}
         </div>
     );
 }
 
 export default Layout;
-
-// {open && <ModalCarts onClose={() => setOpen(false)} />}

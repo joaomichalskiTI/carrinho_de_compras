@@ -1,9 +1,8 @@
-import { useState } from "react";
 
 import "./styles.css"
 
 import check from "../../assets/check.png";
-import dell from "../../assets/delete.png";
+import trash from "../../assets/trash.png";
 import cart from "../../assets/cart.png";
 
 import Button from "../button";
@@ -35,7 +34,7 @@ function ModalItems({ onClose }) {
                             <td className="btn_actions">
                                 <div className="edit_delete">
                                     <Button
-                                        src={dell}
+                                        src={trash}
                                         background="#E52626"
                                     />
                                 </div>
