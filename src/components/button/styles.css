@@ -17,3 +17,8 @@ button img {
 button p {
   font-size: 16px;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  filter: brightness(0.6);
+}

@@ -1,6 +1,26 @@
 import "./styles.css";
 
 function Input(props) {
+    function formatNumber(value) {
+        value = value.replace(/[^0-9]/g, "");
+
+        const options = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+        const formatter = new Intl.NumberFormat("pt-BR", options);
+        value = (value / 100).toFixed(2);
+        value = formatter.format(value);
+
+        return value;
+    }
+
+    const handleChange = (e) => {
+        let value = e.target.value;
+        if (props.type === "currence") {
+            value = formatNumber(value);
+        }
+
+        props.onChange({ target: { value } });
+    };
+
     return (
         <div className="input_container">
             <p>{props.label}</p>
@@ -9,16 +29,14 @@ function Input(props) {
                     <div className="currence">
                         <input
                             type="text"
-                            style={{ textAlign: props.textAlign }}
                             value={props.value}
-                            onChange={props.onChange}
+                            onChange={handleChange}
                             placeholder={props.placeholder}
                         />
                     </div>
                 ) : (
                     <input
                         type={props.type}
-                        style={{ textAlign: props.textAlign }}
                         maxLength={30}
                         value={props.value}
                         onChange={props.onChange}

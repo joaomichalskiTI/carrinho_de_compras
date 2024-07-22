@@ -69,6 +69,7 @@ function Form({ isOpenModalCarts, isOpenModalItens, handleAddToCart }) {
                             color="#fff"
                             background="#549BFF"
                             onClick={addToCart}
+                            disabled={disabled}
                         />
                         <Button
                             label={"Cadastre esse produto"}
