@@ -1,5 +1,3 @@
-import img from "../assets/cartBlack.png";
-
 const columns = [
     { title: "Produto", dataIndex: "produto", key: "produto" },
     { title: "Valor ", dataIndex: "Valor", key: "Valor" },
@@ -13,7 +11,6 @@ let carts = [
     {
         id: "1",
         name: "Caixa",
-        src: img,
     },
 ];
 

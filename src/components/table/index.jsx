@@ -4,15 +4,16 @@ import "./styles.css";
 
 import check from "../../assets/check.png";
 import trash from "../../assets/trash.png";
-import cartBlack from "../../assets/cartBlack.png";
+import cart_black from "../../assets/cart_black.png";
 import cart_without from "../../assets/cart_without.png";
 
 import Button from "../button";
 
 import { columns } from "../../db";
 
-function Table({ cart, handleDeleteFromCart }) {
+function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
     const [quantity, setQuantity] = useState(0);
+    const [disabled, setDisabled] = useState(false);
 
     const handleLessQuantity = () => {
         setQuantity(quantity - 1);
@@ -26,13 +27,29 @@ function Table({ cart, handleDeleteFromCart }) {
         handleDeleteFromCart(itemId);
     };
 
+    const calculateTotalValue = () => {
+        return cart.reduce((total, item) => {
+            return total + (parseFloat(item.value) || 0);
+        }, 0);
+    };
+
+    const totalValue = calculateTotalValue();
+
+    useEffect(() => {
+        if (!cart.length) {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
+    }, [cart]);
+
     return (
         <div className="table_container">
             <div className="table">
                 <div className="table_content">
                     <div className="inner">
                         <div className="table_hero">
-                            <img src={cartBlack} alt="Seu carrinho" />
+                            <img src={cart_black} alt="cart_black" />
                             <h2>Carrinho</h2>
                         </div>
                         {!cart.length ? (
@@ -49,21 +66,28 @@ function Table({ cart, handleDeleteFromCart }) {
                             <table>
                                 <thead>
                                     <tr>
-                                        {columns.map((item) => (
-                                            <th key={item.key}>
+                                        {columns.map((item, index) => (
+                                            <th key={index}>
                                                 <p>{item.title}</p>
                                             </th>
                                         ))}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {cart.map((item) => (
-                                        <tr key={item.id}>
+                                    {cart.map((item, index) => (
+                                        <tr key={index}>
                                             <td>
                                                 <p>{item.name}</p>
                                             </td>
                                             <td>
-                                                <p>R${item.value ? item.value : "0,00"}</p>
+                                                <p>
+                                                    R$
+                                                    {item.value
+                                                        ? parseFloat(item.value)
+                                                            .toFixed(2)
+                                                            .replace(".", ",")
+                                                        : "0,00"}
+                                                </p>
                                             </td>
                                             <td>
                                                 <div className="btn_quantity_container">
@@ -106,7 +130,7 @@ function Table({ cart, handleDeleteFromCart }) {
                     </div>
                     <div className="value">
                         <h1>Valor total:</h1>
-                        <h2>R$1.500,00</h2>
+                        <h2>R${totalValue.toFixed(2).replace(".", ",")}</h2>
                     </div>
                 </div>
                 <div className="btn_submit">
@@ -114,7 +138,9 @@ function Table({ cart, handleDeleteFromCart }) {
                         label={"Finalizar compra"}
                         src={check}
                         color={"#fff"}
-                        background="#05A73C"
+                        disabled={disabled}
+                        background="#60b52c"
+                        onClick={setOpenPayScreen}
                     />
                 </div>
             </div>
