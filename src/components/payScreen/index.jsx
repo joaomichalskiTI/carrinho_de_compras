@@ -26,7 +26,7 @@ function payScreen() {
                     <div className="img_content">
                         <img src={finish} alt="Finalizando" />
                     </div>
-                    <h1>Finalizando sua compra</h1>
+                    <h2>Finalizando sua compra</h2>
                 </div>
                 <div className="wrapper_table">
                     <div className="wrapper_table_container">
@@ -64,14 +64,14 @@ function payScreen() {
                     <div className="img_content">
                         <img src={pay} alt="Finalizando" />
                     </div>
-                    <h1>Pagamento</h1>
+                    <h2>Pagamento</h2>
                 </div>
                 <div>
                     <div className="title_info_content">
                         <div className="img_content">
                             <img src={cash} alt="Pagamento" />
                         </div>
-                        <h1>Dinheiro</h1>
+                        <h3>Dinheiro</h3>
                     </div>
                 </div>
                 <div className="info_content">
