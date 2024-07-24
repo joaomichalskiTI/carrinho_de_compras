@@ -71,6 +71,84 @@ function ModalItems({ onClose, item, handleDeleteItem }) {
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <p>Caixa de leite</p>
+                                </td>
+                                <td>
+                                    <p>R$5,00</p>
+                                </td>
+                                <td className="btns_actions">
+                                    <div className="delete_product">
+                                        <Button
+                                            src={trash}
+                                            width={"24px"}
+                                            onClick={() => deleteItem(item.id)}
+                                        />
+                                    </div>
+                                    <div className="inner_cart_item">
+                                        <Button
+                                            label={"Adicionar ao carrinho"}
+                                            src={cart}
+                                            background="#549BFF"
+                                            color={"#fff"}
+                                            fontWeigth={"800"}
+                                        />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Caixa de leite</p>
+                                </td>
+                                <td>
+                                    <p>R$5,00</p>
+                                </td>
+                                <td className="btns_actions">
+                                    <div className="delete_product">
+                                        <Button
+                                            src={trash}
+                                            width={"24px"}
+                                            onClick={() => deleteItem(item.id)}
+                                        />
+                                    </div>
+                                    <div className="inner_cart_item">
+                                        <Button
+                                            label={"Adicionar ao carrinho"}
+                                            src={cart}
+                                            background="#549BFF"
+                                            color={"#fff"}
+                                            fontWeigth={"800"}
+                                        />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Caixa de leite</p>
+                                </td>
+                                <td>
+                                    <p>R$5,00</p>
+                                </td>
+                                <td className="btns_actions">
+                                    <div className="delete_product">
+                                        <Button
+                                            src={trash}
+                                            width={"24px"}
+                                            onClick={() => deleteItem(item.id)}
+                                        />
+                                    </div>
+                                    <div className="inner_cart_item">
+                                        <Button
+                                            label={"Adicionar ao carrinho"}
+                                            src={cart}
+                                            background="#549BFF"
+                                            color={"#fff"}
+                                            fontWeigth={"800"}
+                                        />
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

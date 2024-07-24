@@ -29,7 +29,7 @@ function Layout() {
 
     return (
         <div className="layout">
-            <Header screnPay={screen} />
+            <Header screnPay={screen} setScreen={() => setScreen("1")} />
             <main>
                 {screen === "1" ? (
                     <>

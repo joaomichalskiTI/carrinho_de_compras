@@ -138,8 +138,8 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
                         label={"Finalizar compra"}
                         src={check}
                         color={"#fff"}
-                        disabled={disabled}
                         background="#60b52c"
+                        disabled={disabled}
                         onClick={setOpenPayScreen}
                     />
                 </div>

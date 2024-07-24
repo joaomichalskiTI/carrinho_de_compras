@@ -19,8 +19,7 @@ function Header({ screnPay, setScreen }) {
         >
             {screnPay === "2" && (
                 <div className="back">
-                    <Button onClick={() => setScreen("2")} src={back} />
-                    <p>Voltar</p>
+                    <Button onClick={setScreen} src={back} label={"Voltar"} />
                 </div>
             )}
             <img src={logo} alt="logo" draggable={false} />
