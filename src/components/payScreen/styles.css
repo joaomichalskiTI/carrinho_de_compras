@@ -72,7 +72,7 @@
 .close_cart_content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   width: 100%;
   min-height: 538px;
 }
@@ -82,7 +82,8 @@
   flex-wrap: wrap;
   min-height: 300px;
   width: 100%;
-  padding: 20px;
+  gap: 15px;
+  padding: 10px;
 
 }
 
@@ -91,6 +92,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding-top: 15px ;
 
   .button {
     width: 60%;

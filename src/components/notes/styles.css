@@ -1,16 +1,19 @@
 .money_note_content {
     display: flex;
     align-items: center;
-    width: 42%;
-    height: 75px;
+    width: 45%;
+    height: 60px;
     gap: 20px;
     background-color: #F8F8F8;
     border-radius: 10px;
-    box-shadow: 7px 0px 0px 0px #549BFF;
+    box-shadow: 5px 0px 0px 0px #549BFF;
 }
 
 .text_money_note {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 20px;
+    padding: 5px;
   }
