@@ -10,6 +10,7 @@
   overflow: hidden;
   z-index: 999;
   background-color: #112d5592;
+  color: #112D55;
 }
 
 .content_carts {
@@ -46,4 +47,13 @@
 
 .table_items_carts {
   width: 100%;
+
+  table {
+    text-align: center;
+    color: #112D55;
+  }
+
+  thead {
+    font-weight: 700;
+  }
 }

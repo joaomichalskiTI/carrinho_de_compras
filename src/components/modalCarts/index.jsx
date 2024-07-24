@@ -14,7 +14,7 @@ function ModalCarts({ onClose }) {
                 <div className="header_content_carts">
                     <div className="title_content_carts">
                         <img src={previous_purchase} alt="previous_purchase" />
-                        <h1>Produtos Cadastrados</h1>
+                        <h1>Compras anteriores</h1>
                     </div>
                     <div className="btn_close">
                         <Button onClick={onClose} src={close} width={"25px"} />

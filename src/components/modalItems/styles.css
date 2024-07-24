@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  color: #112D55;
 
   img {
     width: 30px;
@@ -50,13 +51,12 @@
   height: auto;
   macwidth: 100%;
 
-
-
   img {
     width: 30px;
     height: auto;
   }
 }
+
 .btns_actions {
   display: flex;
   align-items: center;
@@ -97,6 +97,7 @@
 
   table {
     width: 100%;
+    color: #112D55;
   }
 }
 
@@ -105,5 +106,4 @@
   background-color: #fff;
   position: sticky;
   top: 0;
-
 }
