@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { toast } from "react-toastify";
+
 import "./styles.css";
 
 import Header from "../header";
@@ -27,10 +29,12 @@ function Layout() {
 
     const handleAddToCart = (newItem) => {
         setCart((prevCart) => [...prevCart, newItem]);
+        toast.success("Item adicionado ao carrirro");
     };
 
     const handleDeleteFromCart = (itemId) => {
         setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
+        toast.success("Item deletado com sucesso");
     };
 
     useEffect(() => {

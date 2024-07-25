@@ -47,6 +47,7 @@
 
 .title_info_content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 80px;
@@ -84,7 +85,14 @@
   padding: 25px;
 }
 
+.img_content{
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 5px;
+}
 .img_content img {
+
   width: 40px;
   height: auto;
 }

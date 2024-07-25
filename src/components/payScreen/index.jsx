@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { toast } from "react-toastify";
+
 import Button from "../button";
 
 import Notes from "../notes";
@@ -76,9 +78,8 @@ function PayScreen({ payCart, closePayScreen }) {
         };
 
         const updatedCarts = [...savedCarts, newCart];
-
         localStorage.setItem("carts", JSON.stringify(updatedCarts));
-
+        toast.success("Carrinho salvo em compras anteriores");
         closePayScreen();
     };
 
@@ -99,7 +100,7 @@ function PayScreen({ payCart, closePayScreen }) {
                     </div>
                     <div className="wrapper_table">
                         <div className="wrapper_table_container">
-                            <table >
+                            <table>
                                 <thead>
                                     <tr className="table_payContent">
                                         <td>
@@ -141,8 +142,9 @@ function PayScreen({ payCart, closePayScreen }) {
                         <div className="title_info_content">
                             <div className="img_content">
                                 <img src={cash} alt="Pagamento" />
+                                <h3>Dinheiro</h3>
                             </div>
-                            <h3>Dinheiro</h3>
+                            <p>O minimo de notas necessárias são:</p>
                         </div>
                     </div>
                     <div className="info_content">
