@@ -1,8 +1,15 @@
 const columns = [
     { title: "Produto", dataIndex: "produto", key: "produto" },
     { title: "Valor ", dataIndex: "Valor", key: "Valor" },
-    { title: "Quantidade ", dataIndex: "quantidade", key: "quantidade" },
+    // { title: "Quantidade ", dataIndex: "quantidade", key: "quantidade" },
     { title: "", dataIndex: "actions", key: "actions" },
+];
+
+const columnsModal = [
+    { title: "Carrinho", dataIndex: "carrinho", key: "carrinho" },
+    { title: "Data ", dataIndex: "data", key: "data" },
+    { title: "Itens ", dataIndex: "itens", key: "itens" },
+    { title: "Valor total", dataIndex: "valorTotal", key: "valorTotal" },
 ];
 
 let initialCart = [];
@@ -13,4 +20,4 @@ const itemsModalShop = [
     { title: "Valor ", dataIndex: "Valor", key: "Valor" },
 ];
 
-export { initialCart, columns, carts, itemsModalShop };
+export { columns, columnsModal, initialCart, carts, itemsModalShop };

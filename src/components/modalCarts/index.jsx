@@ -7,7 +7,7 @@ import close from "../../assets/close.png";
 
 import Button from "../button";
 
-import { carts } from "../../db";
+import { carts, columnsModal } from "../../db";
 
 function ModalCarts({ onClose }) {
     const [cart] = useState(() => {
@@ -45,18 +45,11 @@ function ModalCarts({ onClose }) {
                     <table>
                         <thead>
                             <tr>
-                                <td>
-                                    <p>Carrinho</p>
-                                </td>
-                                <td>
-                                    <p>Data</p>
-                                </td>
-                                <td>
-                                    <p>Itens</p>
-                                </td>
-                                <td>
-                                    <p>Valor total</p>
-                                </td>
+                                {columnsModal.map((item, index) => (
+                                    <th key={index}>
+                                        <p>{item.title}</p>
+                                    </th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
@@ -65,7 +58,7 @@ function ModalCarts({ onClose }) {
                                     <td>Carrinho {index}</td>
                                     <td>{formatDate(item.date)}</td>
                                     <td>{item.itemCount}</td>
-                                    <td>{item.totalValue}</td>
+                                    <td>R${item.totalValue}</td>
                                 </tr>
                             ))}
                         </tbody>

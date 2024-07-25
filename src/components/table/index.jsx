@@ -12,20 +12,20 @@ import Button from "../button";
 import { columns } from "../../db";
 
 function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
-    const [quantity, setQuantity] = useState(0);
+    //  const [quantity, setQuantity] = useState(0);
     const [disabled, setDisabled] = useState(false);
 
     const handleOpenModal = (cart) => {
         setOpenPayScreen({ isOpen: true, itemId: cart });
     };
 
-    const handleLessQuantity = () => {
-        setQuantity(quantity - 1);
-    };
+    // const handleLessQuantity = () => {
+    //     setQuantity(quantity - 1);
+    // };
 
-    const handleMoreQuantity = () => {
-        setQuantity(quantity + 1);
-    };
+    // const handleMoreQuantity = () => {
+    //     setQuantity(quantity + 1);
+    // };
 
     const deleteToItem = (itemId) => {
         handleDeleteFromCart(itemId);
@@ -94,7 +94,7 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
                                                             : "0,00"}
                                                     </p>
                                                 </td>
-                                                <td>
+                                                {/* <td>
                                                     <div className="btn_quantity_container">
                                                         <div className="btn_quantity">
                                                             <button
@@ -116,7 +116,7 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td> */}
                                                 <td>
                                                     <div className="actions_table">
                                                         <button

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Button from "../button";
 
@@ -19,6 +19,8 @@ import one from "../../assets/1.png";
 import "./styles.css";
 
 function PayScreen({ payCart, closePayScreen }) {
+    const [notasNecessarias, setNotasNecessarias] = useState("");
+
     const calculateTotalValue = () => {
         return payCart.reduce((total, item) => {
             return total + (parseFloat(item.value) || 0);
@@ -27,12 +29,31 @@ function PayScreen({ payCart, closePayScreen }) {
 
     const totalValue = calculateTotalValue();
 
+    const calcularNotas = (total) => {
+        const notas = [100, 50, 20, 10, 5, 2, 1];
+        const resultado = {};
+
+        for (let i = 0; i < notas.length; i++) {
+            const nota = notas[i];
+            const quantidade = Math.floor(total / nota);
+            if (quantidade > 0) {
+                resultado[nota] = quantidade;
+                total -= quantidade * nota;
+            }
+        }
+
+        return resultado;
+    };
+
     const handleSubmitCart = (cartToSave) => {
         const savedCarts = JSON.parse(localStorage.getItem("carts")) || [];
 
         const totalValue = cartToSave.reduce((total, item) => {
             return total + (parseFloat(item.value.replace(",", ".")) || 0);
         }, 0);
+
+        const resultado = calcularNotas(totalValue);
+        setNotasNecessarias(resultado);
 
         const newCart = {
             date: new Date().toISOString(),
@@ -48,84 +69,125 @@ function PayScreen({ payCart, closePayScreen }) {
         closePayScreen();
     };
 
-    return (
-        <div className="payScreen_content">
-            <div className="pay_content">
-                <div className="title_pay_content">
-                    <div className="img_content">
-                        <img src={finish} alt="Finalizando" />
+    useEffect(() => {
+        const totalValue = payCart.reduce((total, item) => {
+            return total + (parseFloat(item.value.replace(",", ".")) || 0);
+        }, 0);
+
+        const resultado = calcularNotas(totalValue);
+        setNotasNecessarias(resultado);
+    }, [payCart]);
+
+    const Carrinho = () => {
+        return (
+            <div className="payScreen_content">
+                <div className="pay_content">
+                    <div className="title_pay_content">
+                        <div className="img_content">
+                            <img src={finish} alt="Finalizando" />
+                        </div>
+                        <h2>Finalizando sua compra</h2>
                     </div>
-                    <h2>Finalizando sua compra</h2>
-                </div>
-                <div className="wrapper_table">
-                    <div className="wrapper_table_container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>
-                                        <p>Item</p>
-                                    </td>
-                                    <td>
-                                        <p>Valor</p>
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {payCart.map((item, index) => (
-                                    <tr key={index}>
+                    <div className="wrapper_table">
+                        <div className="wrapper_table_container">
+                            <table>
+                                <thead>
+                                    <tr>
                                         <td>
-                                            <p>{item.name}</p>
+                                            <p>Item</p>
                                         </td>
                                         <td>
-                                            <p>{item.value}</p>
+                                            <p>Valor</p>
                                         </td>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="value_pay">
-                        <h2>Valor total:</h2>
-                        <h1>R${totalValue.toFixed(2).replace(".", ",")}</h1>
+                                </thead>
+                                <tbody>
+                                    {payCart.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>
+                                                <p>{item.name}</p>
+                                            </td>
+                                            <td>
+                                                <p>{item.value}</p>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="value_pay">
+                            <h2>Valor total:</h2>
+                            <h1>R${totalValue.toFixed(2).replace(".", ",")}</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="close_cart_content">
-                <div className="title_info_content">
-                    <div className="img_content">
-                        <img src={pay} alt="Finalizando" />
-                    </div>
-                    <h2>Pagamento</h2>
-                </div>
-                <div>
+                <div className="close_cart_content">
                     <div className="title_info_content">
                         <div className="img_content">
-                            <img src={cash} alt="Pagamento" />
+                            <img src={pay} alt="Finalizando" />
                         </div>
-                        <h3>Dinheiro</h3>
+                        <h2>Pagamento</h2>
+                    </div>
+                    <div>
+                        <div className="title_info_content">
+                            <div className="img_content">
+                                <img src={cash} alt="Pagamento" />
+                            </div>
+                            <h3>Dinheiro</h3>
+                        </div>
+                    </div>
+                    <div className="info_content">
+                        <Notes
+                            src={hundred}
+                            label1={"Notas de R$100"}
+                            label2={notasNecessarias[100] || 0}
+                        />
+                        <Notes
+                            src={fifty}
+                            label1={"Notas de R$50"}
+                            label2={notasNecessarias[50] || 0}
+                        />
+                        <Notes
+                            src={twenty}
+                            label1={"Notas de R$20"}
+                            label2={notasNecessarias[20] || 0}
+                        />
+                        <Notes
+                            src={ten}
+                            label1={"Notas de R$10"}
+                            label2={notasNecessarias[10] || 0}
+                        />
+                        <Notes
+                            src={five}
+                            label1={"Notas de R$5"}
+                            label2={notasNecessarias[5] || 0}
+                        />
+                        <Notes
+                            src={two}
+                            label1={"Notas de R$2"}
+                            label2={notasNecessarias[2] || 0}
+                        />
+                        <Notes
+                            src={one}
+                            label1={"Notas de R$1"}
+                            label2={notasNecessarias[1] || 0}
+                        />
+                    </div>
+                    <div className="btn_close_cart">
+                        <Button
+                            src={check}
+                            label={"Dinheiro depositado"}
+                            color={"#fff"}
+                            background="#60b52c"
+                            onClick={() => handleSubmitCart(payCart)}
+                        />
                     </div>
                 </div>
-                <div className="info_content">
-                    <Notes src={hundred} label1={"Notas de R$100"} label2={"16"} />
-                    <Notes src={fifty} label1={"Notas de R$50"} label2={"16"} />
-                    <Notes src={twenty} label1={"Notas de R$20"} label2={"16"} />
-                    <Notes src={ten} label1={"Notas de R$10"} label2={"16"} />
-                    <Notes src={five} label1={"Notas de R$5"} label2={"16"} />
-                    <Notes src={two} label1={"Notas de R$2"} label2={"16"} />
-                    <Notes src={one} label1={"Notas de R$1"} label2={"16"} />
-                </div>
-                <div className="btn_close_cart">
-                    <Button
-                        src={check}
-                        label={"Dinheiro depositado"}
-                        color={"#fff"}
-                        background="#60b52c"
-                        onClick={() => handleSubmitCart(payCart)}
-                    />
-                </div>
             </div>
-        </div>
-    );
+        );
+    };
+
+    return <Carrinho />;
 }
 
 export default PayScreen;
