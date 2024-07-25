@@ -27,6 +27,25 @@ function payScreen(payCart) {
 
     const totalValue = calculateTotalValue();
 
+    const handleSubmitCart = (cartToSave) => {
+        const savedCarts = JSON.parse(localStorage.getItem("carts")) || [];
+
+        const totalValue = cartToSave.reduce((total, item) => {
+            return total + (parseFloat(item.value.replace(",", ".")) || 0);
+        }, 0);
+
+        const newCart = {
+            date: new Date().toISOString(),
+            itemCount: cartToSave.length,
+            index: savedCarts.length,
+            totalValue: totalValue.toFixed(2),
+        };
+
+        const updatedCarts = [...savedCarts, newCart];
+
+        localStorage.setItem("carts", JSON.stringify(updatedCarts));
+    };
+
     return (
         <div className="payScreen_content">
             <div className="pay_content">
@@ -100,6 +119,7 @@ function payScreen(payCart) {
                         label={"Dinheiro depositado"}
                         color={"#fff"}
                         background="#60b52c"
+                        onClick={() => handleSubmitCart(payCart.payCart)}
                     />
                 </div>
             </div>

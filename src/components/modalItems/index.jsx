@@ -1,18 +1,15 @@
-
-
-import "./styles.css"
+import "./styles.css";
 
 import trash from "../../assets/trash.png";
 import cart from "../../assets/cart.png";
-import menu2 from "../../assets/menu2.png"
-import close from "../../assets/close.png"
+import menu2 from "../../assets/menu2.png";
+import close from "../../assets/close.png";
 
 import Button from "../button";
 
-import { itemsModalShop } from "../../db"
+import { itemsModalShop } from "../../db";
 
 function ModalItems({ onClose, item, handleDeleteItem }) {
-
     const deleteItem = (itemId) => {
         handleDeleteItem(itemId);
     };
@@ -26,15 +23,11 @@ function ModalItems({ onClose, item, handleDeleteItem }) {
                         <h1>Produtos Cadastrados</h1>
                     </div>
                     <div className="btn_close">
-                        <Button
-                            onClick={onClose}
-                            src={close}
-                            width={"25px"}
-                        />
+                        <Button onClick={onClose} src={close} width={"25px"} />
                     </div>
                 </div>
                 <div className="table_itens">
-                    <table >
+                    <table>
                         <thead className="table_head">
                             <tr>
                                 {itemsModalShop.map((item) => (
@@ -152,7 +145,6 @@ function ModalItems({ onClose, item, handleDeleteItem }) {
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     );

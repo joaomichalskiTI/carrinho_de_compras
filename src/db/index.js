@@ -6,13 +6,7 @@ const columns = [
 ];
 
 let initialCart = [];
-
-let carts = [
-    {
-        id: "1",
-        name: "Caixa",
-    },
-];
+let carts = [];
 
 const itemsModalShop = [
     { title: "Produto", dataIndex: "produto", key: "produto" },

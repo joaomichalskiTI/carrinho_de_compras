@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import "./styles.css";
 
 import previous_purchase from "../../assets/previous_purchase.png";
@@ -8,6 +10,25 @@ import Button from "../button";
 import { carts } from "../../db";
 
 function ModalCarts({ onClose }) {
+    const [cart] = useState(() => {
+        const savedCart = localStorage.getItem("carts");
+        return savedCart ? JSON.parse(savedCart) : carts;
+    });
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+
+        return `${day}/${month}/${year}`;
+    }
+
+    useEffect(() => {
+        localStorage.setItem("carts", JSON.stringify(cart));
+    }, [cart]);
+
     return (
         <div className="modal_carts_container">
             <div className="content_carts">
@@ -28,7 +49,7 @@ function ModalCarts({ onClose }) {
                                     <p>Carrinho</p>
                                 </td>
                                 <td>
-                                    <p>Criado</p>
+                                    <p>Data</p>
                                 </td>
                                 <td>
                                     <p>Itens</p>
@@ -39,20 +60,14 @@ function ModalCarts({ onClose }) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <p>Carrinho 1</p>
-                                </td>
-                                <td>
-                                    <p>20 de junho, 10:45</p>
-                                </td>
-                                <td>
-                                    <p>6 itens</p>
-                                </td>
-                                <td>
-                                    <p>R$135,00</p>
-                                </td>
-                            </tr>
+                            {cart.map((item, index) => (
+                                <tr key={index}>
+                                    <td>Carrinho {index}</td>
+                                    <td>{formatDate(item.date)}</td>
+                                    <td>{item.itemCount}</td>
+                                    <td>{item.totalValue}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
