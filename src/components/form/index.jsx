@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import "./styles.css";
 
 import carts from "../../assets/cart.png";
-import plus from "../../assets/plus.png";
-import menu from "../../assets/menu.png";
+//import plus from "../../assets/plus.png";
+//import menu from "../../assets/menu.png";
 import bag from "../../assets/bag.png";
 import book from "../../assets/book.png";
 
@@ -29,13 +29,15 @@ function Form({ isOpenModalCarts, isOpenModalItens, handleAddToCart }) {
         setValue("");
     };
 
+    const cart = localStorage.getItem("cart");
+
     useEffect(() => {
-        if (!name | !value) {
+        if (!name | !value | (cart.lenght > 11)) {
             setDisabled(true);
         } else {
             setDisabled(false);
         }
-    }, [name, value]);
+    }, [name, value, cart]);
 
     return (
         <div className="form_container">
@@ -71,7 +73,7 @@ function Form({ isOpenModalCarts, isOpenModalItens, handleAddToCart }) {
                             onClick={addToCart}
                             disabled={disabled}
                         />
-                        <Button
+                        {/* <Button
                             label={"Cadastre esse produto"}
                             src={plus}
                             color="#fff"
@@ -83,7 +85,7 @@ function Form({ isOpenModalCarts, isOpenModalItens, handleAddToCart }) {
                             color="#fff"
                             background="#112D55"
                             onClick={isOpenModalItens}
-                        />
+                        /> */}
                     </div>
                 </div>
                 <div className="shop">

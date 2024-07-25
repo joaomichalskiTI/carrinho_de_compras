@@ -18,9 +18,9 @@ import one from "../../assets/1.png";
 
 import "./styles.css";
 
-function payScreen(payCart) {
+function PayScreen({ payCart, closePayScreen }) {
     const calculateTotalValue = () => {
-        return payCart.payCart.reduce((total, item) => {
+        return payCart.reduce((total, item) => {
             return total + (parseFloat(item.value) || 0);
         }, 0);
     };
@@ -44,6 +44,8 @@ function payScreen(payCart) {
         const updatedCarts = [...savedCarts, newCart];
 
         localStorage.setItem("carts", JSON.stringify(updatedCarts));
+
+        closePayScreen();
     };
 
     return (
@@ -69,12 +71,11 @@ function payScreen(payCart) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {payCart.payCart.map((item, index) => (
+                                {payCart.map((item, index) => (
                                     <tr key={index}>
                                         <td>
                                             <p>{item.name}</p>
                                         </td>
-
                                         <td>
                                             <p>{item.value}</p>
                                         </td>
@@ -119,7 +120,7 @@ function payScreen(payCart) {
                         label={"Dinheiro depositado"}
                         color={"#fff"}
                         background="#60b52c"
-                        onClick={() => handleSubmitCart(payCart.payCart)}
+                        onClick={() => handleSubmitCart(payCart)}
                     />
                 </div>
             </div>
@@ -127,4 +128,4 @@ function payScreen(payCart) {
     );
 }
 
-export default payScreen;
+export default PayScreen;

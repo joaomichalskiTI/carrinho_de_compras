@@ -37,6 +37,11 @@ function Layout() {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
 
+    const closePayScreen = () => {
+        setScreen({ isOpen: false, itemId: [] });
+        setCart([]);
+    };
+
     return (
         <div className="layout">
             <Header screnPay={screen.isOpen} setScreen={() => setScreen(false, [])} />
@@ -57,7 +62,7 @@ function Layout() {
                         />
                     </>
                 ) : (
-                    <PayScreen payCart={screen.itemId} />
+                    <PayScreen payCart={screen.itemId} closePayScreen={closePayScreen} />
                 )}
             </main>
             {open && <ModalCarts onClose={() => setOpen(false)} />}
