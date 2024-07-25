@@ -32,6 +32,7 @@ function Input(props) {
                             value={props.value}
                             onChange={handleChange}
                             placeholder={props.placeholder}
+                            maxLength={8}
                         />
                     </div>
                 ) : (

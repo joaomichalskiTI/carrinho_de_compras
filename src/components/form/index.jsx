@@ -29,15 +29,16 @@ function Form({ isOpenModalCarts, isOpenModalItens, handleAddToCart }) {
         setValue("");
     };
 
-    const cart = localStorage.getItem("cart");
-
     useEffect(() => {
-        if (!name | !value | (cart.lenght > 11)) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartLength = cart.length;
+
+        if (!name | !value | (cartLength >= 10)) {
             setDisabled(true);
         } else {
             setDisabled(false);
         }
-    }, [name, value, cart]);
+    }, [name, value]);
 
     return (
         <div className="form_container">

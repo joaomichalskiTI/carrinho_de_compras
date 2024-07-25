@@ -32,19 +32,28 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
     };
 
     const calculateTotalValue = () => {
-        return cart.reduce((total, item) => {
-            return total + (parseFloat(item.value) || 0);
+        const total = cart.reduce((total, item) => {
+            const itemValue = parseFloat(
+                item.value.replace(".", "").replace(",", ".")
+            );
+
+            return total + (isNaN(itemValue) ? 0 : itemValue);
         }, 0);
+
+        return total;
     };
 
     const totalValue = calculateTotalValue();
 
+    const formatCurrency = (value) => {
+        return new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(value);
+    };
+
     useEffect(() => {
-        if (!cart.length) {
-            setDisabled(true);
-        } else {
-            setDisabled(false);
-        }
+        setDisabled(cart.length === 0);
     }, [cart]);
 
     return (
@@ -85,38 +94,8 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
                                                     <p>{item.name}</p>
                                                 </td>
                                                 <td>
-                                                    <p>
-                                                        R$
-                                                        {item.value
-                                                            ? parseFloat(item.value)
-                                                                .toFixed(2)
-                                                                .replace(".", ",")
-                                                            : "0,00"}
-                                                    </p>
+                                                    <p>R${item.value}</p>
                                                 </td>
-                                                {/* <td>
-                                                    <div className="btn_quantity_container">
-                                                        <div className="btn_quantity">
-                                                            <button
-                                                                onClick={handleLessQuantity}
-                                                                disabled={quantity === 0}
-                                                            >
-                                                                -
-                                                            </button>
-                                                            <input
-                                                                type="text"
-                                                                value={quantity}
-                                                                disabled={true}
-                                                            />
-                                                            <button
-                                                                onClick={handleMoreQuantity}
-                                                                disabled={quantity === 10}
-                                                            >
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td> */}
                                                 <td>
                                                     <div className="actions_table">
                                                         <button
@@ -141,7 +120,7 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
                         </div>
                         <div className="price">
                             <h2>Valor total:</h2>
-                            <h1>R${totalValue.toFixed(2).replace(".", ",")}</h1>
+                            <h1>{formatCurrency(totalValue)}</h1>
                         </div>
                     </div>
                 </div>

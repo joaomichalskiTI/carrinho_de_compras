@@ -22,14 +22,28 @@ function PayScreen({ payCart, closePayScreen }) {
     const [notasNecessarias, setNotasNecessarias] = useState("");
 
     const calculateTotalValue = () => {
-        return payCart.reduce((total, item) => {
-            return total + (parseFloat(item.value) || 0);
+        const total = payCart.reduce((total, item) => {
+            const itemValue = parseFloat(
+                item.value.replace(".", "").replace(",", ".")
+            );
+
+            return total + (isNaN(itemValue) ? 0 : itemValue);
         }, 0);
+
+        return total;
+    };
+
+    const formatCurrency = (value) => {
+        return new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(value);
     };
 
     const totalValue = calculateTotalValue();
 
     const calcularNotas = (total) => {
+        debugger;
         const notas = [100, 50, 20, 10, 5, 2, 1];
         const resultado = {};
 
@@ -70,13 +84,9 @@ function PayScreen({ payCart, closePayScreen }) {
     };
 
     useEffect(() => {
-        const totalValue = payCart.reduce((total, item) => {
-            return total + (parseFloat(item.value.replace(",", ".")) || 0);
-        }, 0);
-
         const resultado = calcularNotas(totalValue);
         setNotasNecessarias(resultado);
-    }, [payCart]);
+    }, [totalValue]);
 
     const Carrinho = () => {
         return (
@@ -90,9 +100,9 @@ function PayScreen({ payCart, closePayScreen }) {
                     </div>
                     <div className="wrapper_table">
                         <div className="wrapper_table_container">
-                            <table>
+                            <table >
                                 <thead>
-                                    <tr>
+                                    <tr className="table_payContent">
                                         <td>
                                             <p>Item</p>
                                         </td>
@@ -108,7 +118,7 @@ function PayScreen({ payCart, closePayScreen }) {
                                                 <p>{item.name}</p>
                                             </td>
                                             <td>
-                                                <p>{item.value}</p>
+                                                <p>R${item.value}</p>
                                             </td>
                                         </tr>
                                     ))}
@@ -117,7 +127,7 @@ function PayScreen({ payCart, closePayScreen }) {
                         </div>
                         <div className="value_pay">
                             <h2>Valor total:</h2>
-                            <h1>R${totalValue.toFixed(2).replace(".", ",")}</h1>
+                            <h1>{formatCurrency(totalValue)}</h1>
                         </div>
                     </div>
                 </div>
@@ -176,7 +186,7 @@ function PayScreen({ payCart, closePayScreen }) {
                     <div className="btn_close_cart">
                         <Button
                             src={check}
-                            label={"Dinheiro depositado"}
+                            label={"Finalizar Compra"}
                             color={"#fff"}
                             background="#60b52c"
                             onClick={() => handleSubmitCart(payCart)}

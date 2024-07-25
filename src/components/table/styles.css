@@ -93,6 +93,10 @@ thead tr {
   height: 40px;
 }
 
+tbody tr td {
+  text-align: center;
+}
+
 thead tr th p {
   font-size: 16px;
   text-align: center;
