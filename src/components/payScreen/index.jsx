@@ -43,7 +43,6 @@ function PayScreen({ payCart, closePayScreen }) {
     const totalValue = calculateTotalValue();
 
     const calcularNotas = (total) => {
-        debugger;
         const notas = [100, 50, 20, 10, 5, 2, 1];
         const resultado = {};
 
