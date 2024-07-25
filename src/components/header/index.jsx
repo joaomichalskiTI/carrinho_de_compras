@@ -9,7 +9,7 @@ function Header({ screnPay, setScreen }) {
     return (
         <header
             style={
-                screnPay === "2"
+                screnPay
                     ? {
                         justifyContent: "space-between",
                         padding: "12px 50px 14px",
@@ -17,13 +17,13 @@ function Header({ screnPay, setScreen }) {
                     : { justifyContent: "center" }
             }
         >
-            {screnPay === "2" && (
+            {screnPay && (
                 <div className="back">
                     <Button onClick={setScreen} src={back} label={"Voltar"} />
                 </div>
             )}
             <img src={logo} alt="logo" draggable={false} />
-            {screnPay === "2" && <span />}
+            {screnPay && <span />}
         </header>
     );
 }

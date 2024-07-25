@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./styles.css";
 
@@ -13,11 +13,17 @@ import ModalItems from "../modalItems";
 import { initialCart } from "../../db";
 
 function Layout() {
-    const [screen, setScreen] = useState("1");
+    const [screen, setScreen] = useState({
+        isOpen: false,
+        itemId: {},
+    });
 
     const [open, setOpen] = useState(false);
     const [openItems, setOpenItems] = useState(false);
-    const [cart, setCart] = useState(initialCart);
+    const [cart, setCart] = useState(() => {
+        const savedCart = localStorage.getItem("cart");
+        return savedCart ? JSON.parse(savedCart) : initialCart;
+    });
 
     const handleAddToCart = (newItem) => {
         setCart((prevCart) => [...prevCart, newItem]);
@@ -27,16 +33,22 @@ function Layout() {
         setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
     };
 
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
+
     return (
         <div className="layout">
-            <Header screnPay={screen} setScreen={() => setScreen("1")} />
+            <Header screnPay={screen.isOpen} setScreen={() => setScreen(false, [])} />
             <main>
-                {screen === "1" ? (
+                {!screen.isOpen ? (
                     <>
                         <Table
                             cart={cart}
                             handleDeleteFromCart={handleDeleteFromCart}
-                            setOpenPayScreen={() => setScreen("2")}
+                            setOpenPayScreen={({ isOpen, itemId }) => {
+                                setScreen({ isOpen, itemId });
+                            }}
                         />
                         <Form
                             isOpenModalCarts={() => setOpen(true)}
@@ -45,7 +57,7 @@ function Layout() {
                         />
                     </>
                 ) : (
-                    <PayScreen setOpenPayScreen={() => handleAddToCart("1")} />
+                    <PayScreen payCart={screen.itemId} />
                 )}
             </main>
             {open && <ModalCarts onClose={() => setOpen(false)} />}

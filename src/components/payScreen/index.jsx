@@ -2,23 +2,31 @@ import React from "react";
 
 import Button from "../button";
 
-import Notes from "../notes"
+import Notes from "../notes";
 
 import finish from "../../assets/finish.png";
 import pay from "../../assets/pay.png";
 import cash from "../../assets/money.png";
 import check from "../../assets/check.png";
-import hundred from "../../assets/100.png"
-import fifty from "../../assets/50.png"
-import twenty from "../../assets/20.png"
-import ten from "../../assets/10.png"
-import five from "../../assets/5.png"
-import two from "../../assets/2.png"
-import one from "../../assets/1.png"
+import hundred from "../../assets/100.png";
+import fifty from "../../assets/50.png";
+import twenty from "../../assets/20.png";
+import ten from "../../assets/10.png";
+import five from "../../assets/5.png";
+import two from "../../assets/2.png";
+import one from "../../assets/1.png";
 
 import "./styles.css";
 
-function payScreen() {
+function payScreen(payCart) {
+    const calculateTotalValue = () => {
+        return payCart.payCart.reduce((total, item) => {
+            return total + (parseFloat(item.value) || 0);
+        }, 0);
+    };
+
+    const totalValue = calculateTotalValue();
+
     return (
         <div className="payScreen_content">
             <div className="pay_content">
@@ -42,20 +50,23 @@ function payScreen() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <p>Caixa de leite</p>
-                                    </td>
-                                    <td>
-                                        <p>R$5,00</p>
-                                    </td>
-                                </tr>
+                                {payCart.payCart.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>
+                                            <p>{item.name}</p>
+                                        </td>
+
+                                        <td>
+                                            <p>{item.value}</p>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
                     <div className="value_pay">
                         <h2>Valor total:</h2>
-                        <h2>R$1.500,00</h2>
+                        <h1>R${totalValue.toFixed(2).replace(".", ",")}</h1>
                     </div>
                 </div>
             </div>
@@ -92,7 +103,6 @@ function payScreen() {
                     />
                 </div>
             </div>
-
         </div>
     );
 }

@@ -15,6 +15,10 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
     const [quantity, setQuantity] = useState(0);
     const [disabled, setDisabled] = useState(false);
 
+    const handleOpenModal = (cart) => {
+        setOpenPayScreen({ isOpen: true, itemId: cart });
+    };
+
     const handleLessQuantity = () => {
         setQuantity(quantity - 1);
     };
@@ -63,74 +67,82 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
                                 </div>
                             </div>
                         ) : (
-                            <table>
-                                <thead>
-                                    <tr>
-                                        {columns.map((item, index) => (
-                                            <th key={index}>
-                                                <p>{item.title}</p>
-                                            </th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {cart.map((item, index) => (
-                                        <tr key={index}>
-                                            <td>
-                                                <p>{item.name}</p>
-                                            </td>
-                                            <td>
-                                                <p>
-                                                    R$
-                                                    {item.value
-                                                        ? parseFloat(item.value)
-                                                            .toFixed(2)
-                                                            .replace(".", ",")
-                                                        : "0,00"}
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <div className="btn_quantity_container">
-                                                    <div className="btn_quantity">
+                            <div className="overflow">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            {columns.map((item, index) => (
+                                                <th key={index}>
+                                                    <p>{item.title}</p>
+                                                </th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {cart.map((item, index) => (
+                                            <tr key={index}>
+                                                <td>
+                                                    <p>{item.name}</p>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        R$
+                                                        {item.value
+                                                            ? parseFloat(item.value)
+                                                                .toFixed(2)
+                                                                .replace(".", ",")
+                                                            : "0,00"}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <div className="btn_quantity_container">
+                                                        <div className="btn_quantity">
+                                                            <button
+                                                                onClick={handleLessQuantity}
+                                                                disabled={quantity === 0}
+                                                            >
+                                                                -
+                                                            </button>
+                                                            <input
+                                                                type="text"
+                                                                value={quantity}
+                                                                disabled={true}
+                                                            />
+                                                            <button
+                                                                onClick={handleMoreQuantity}
+                                                                disabled={quantity === 10}
+                                                            >
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="actions_table">
                                                         <button
-                                                            onClick={handleLessQuantity}
-                                                            disabled={quantity === 0}
+                                                            background="#E52626"
+                                                            onClick={() => deleteToItem(item.id)}
                                                         >
-                                                            -
-                                                        </button>
-                                                        <input
-                                                            type="text"
-                                                            value={quantity}
-                                                            disabled={true}
-                                                        />
-                                                        <button
-                                                            onClick={handleMoreQuantity}
-                                                            disabled={quantity === 10}
-                                                        >
-                                                            +
+                                                            <img src={trash} alt="delete" />
                                                         </button>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="actions_table">
-                                                    <button
-                                                        background="#E52626"
-                                                        onClick={() => deleteToItem(item.id)}
-                                                    >
-                                                        <img src={trash} alt="delete" />
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         )}
                     </div>
                     <div className="value">
-                        <h1>Valor total:</h1>
-                        <h2>R${totalValue.toFixed(2).replace(".", ",")}</h2>
+                        <div className="quantity">
+                            <h2>Quantidade de itens:</h2>
+                            <h1>{cart.length}</h1>
+                        </div>
+                        <div className="price">
+                            <h2>Valor total:</h2>
+                            <h1>R${totalValue.toFixed(2).replace(".", ",")}</h1>
+                        </div>
                     </div>
                 </div>
                 <div className="btn_submit">
@@ -140,7 +152,7 @@ function Table({ cart, handleDeleteFromCart, setOpenPayScreen }) {
                         color={"#fff"}
                         background="#60b52c"
                         disabled={disabled}
-                        onClick={setOpenPayScreen}
+                        onClick={() => handleOpenModal(cart)}
                     />
                 </div>
             </div>
